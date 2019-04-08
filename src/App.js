@@ -34,7 +34,7 @@ class App extends Component {
 
   nextQuote() {
     for (let i = 0; i > quotes.length; i--) {
-      return quotes[i].quote, quotes[i].name;
+      return quotes[i];
     }
   }
 
