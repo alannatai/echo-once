@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './quotes.css';
 
 export default function Quote(props) {
     return (
         <div className="quote">
-            <h1 className="overlay">
+            <h2 className="overlay">
                 {
                     props.quote
                         .split('')
                         .map((char, i) =>
                             <span key={props.quote + i}>{char}</span>)
                 }
-            </h1>
-            <h2 className="overlay2">{props.name}</h2>
+            </h2>
+            <h3 className="overlay2" key={props.name}>{props.name}</h3>
         </div>
     )
 }
