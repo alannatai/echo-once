@@ -26,28 +26,22 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      quote: quotes[quotes.length - 1].quote,
-      name: quotes[quotes.length - 1].name
+      index: quotes.length -1
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  nextQuote() {
-    for (let i = 0; i > quotes.length; i--) {
-      return quotes[i];
-    }
-  }
 
   handleClick() {
     this.setState({
-      quote: this.nextQuote()
+      index: this.state.index - 1
     })
   }
 
   render() {
     return (
       <div className="App">
-        <Quotes quote={this.state.quote} name={this.state.name}/>
+        <Quotes quote={quotes[this.state.index].quote} name={'- ' + quotes[this.state.index].name}/>
         <Button onClick={this.handleClick}/>
       </div>
     );

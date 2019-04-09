@@ -1,13 +1,15 @@
-.overlay {
+.quote {
+    text-align: center;
     font-family: 'Cardo', serif;
-    font-weight: 300;
-    font-size: 40px;
-    color: #fff;
-    background-color: rgb(70, 79, 88);
+    color: black;
     padding: 2em;
     width: 75%;
-    min-height: 100vh;
     margin: 0 auto 0 auto;
+}
+
+.overlay {
+    font-size: 40px;
+    font-weight: 300;
 }
 
 .overlay span {
@@ -24,43 +26,53 @@
     animation-delay: 0.1s;
 }
 .overlay span:nth-child(10n+11) {
-    animation-delay: 0.2s;
+    animation-delay: 0.15s;
 }
 .overlay span:nth-child(10n+14) {
-    animation-delay: 0.3s;
+    animation-delay: 0.2s;
 }
 .overlay span:nth-child(10n+9) {
-    animation-delay: 0.4s;
+    animation-delay: 0.25s;
 }
 .overlay span:nth-child(10n+3) {
-    animation-delay: 0.5s;
+    animation-delay: 0.3s;
 }
 .overlay span:nth-child(10n+13) {
-    animation-delay: 0.6s;
+    animation-delay: 0.35s;
 }
 .overlay span:nth-child(10n+7) {
-    animation-delay: 0.7s;
+    animation-delay: 0.4s;
 }
 .overlay span:nth-child(10n+1) {
-    animation-delay: 0.8s;
+    animation-delay: 0.45s;
 }
 .overlay span:nth-child(10n+5) {
-    animation-delay: 0.9s;
+    animation-delay: 0.5s;
 }
 .overlay span:nth-child(10n+12) {
-    animation-delay: 1s;
+    animation-delay: 0.6s;
 }
 .overlay span:nth-child(10n+10) {
-    animation-delay: 1.4s;
+    animation-delay: 0.75s;
 }
 .overlay span:nth-child(10n+4) {
-    animation-delay: 1.6s;
+    animation-delay: 0.9s;
 }
 .overlay span:nth-child(10n+8) {
-    animation-delay: 1.8s;
+    animation-delay: 1.25s;
 }
 .overlay span:nth-child(10n+2) {
-    animation-delay: 2s;
+    animation-delay: 1.5s;
+}
+
+.overlay2 {
+    font-size: 30px;
+    font-weight: 300;
+    position: relative;
+    opacity: 0;
+    top: 1.5em;
+    animation: animateOverlay 1.7s ease-in-out forwards;
+    animation-delay: 2.5s;
 }
 
 @keyframes animateOverlay {
@@ -68,40 +80,4 @@
         opacity: 1;
         top: 0;
     }
-}
-
-.highlight {
-    display: inline-block;
-    color: #343434;
-    transition: color 250ms, text-shadow 250ms;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px rgba(255, 255, 255, 1);
-    
-    position: relative;
-    z-index: 0;
-
-    &::after {
-        position: absolute;
-        z-index: -1;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        content: '';
-        width: 100%;
-        height: 3px;
-        background-color: #343434;
-        transition: all 250ms;
-    }
-
-    &:hover {
-        color: white;
-        text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
-        
-        &::after {
-            height: 105%;
-            width: 105%;
-        }
-        
-    }
-    
 }
