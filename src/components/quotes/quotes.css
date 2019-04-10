@@ -73,7 +73,7 @@
     opacity: 0;
     top: 1.5em;
     animation: animateOverlay 1.7s ease-in-out forwards;
-    animation-delay: 2.5s;
+    animation-delay: 1.75s;
 }
 
 @keyframes animateOverlay {

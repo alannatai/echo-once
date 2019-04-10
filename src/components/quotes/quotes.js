@@ -13,6 +13,5 @@ export default function Quote(props) {
                 }
             </h2>
             <h3 className="overlay2" key={props.name}>{props.name}</h3>
-        </div>
-    )
+        </div>)
 }

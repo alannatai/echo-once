@@ -1,13 +1,14 @@
 .header {
+    font-weight: bolder;
     display: flex;
     justify-content: center;
     font-size: 50px;;
     color: black;
     margin: 0 auto;
-    padding-top: 40px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 0px;
 }
-
+  
 .flip-vertical-right {
     -webkit-animation: flip-vertical-right 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) reverse both;
     animation: flip-vertical-right 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) reverse both;
@@ -36,8 +37,8 @@
   
   
   .slide-in-left {
-	-webkit-animation: slide-in-left 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
-	        animation: slide-in-left 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
+	-webkit-animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+	        animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
 }
 
  @-webkit-keyframes slide-in-left {
@@ -54,8 +55,8 @@
   }
   @keyframes slide-in-left {
     0% {
-      -webkit-transform: translateX(-40px);
-              transform: translateX(-40px);
+      -webkit-transform: translateX(-35px);
+              transform: translateX(-35px);
       opacity: 0;
     }
     100% {

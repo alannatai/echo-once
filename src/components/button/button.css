@@ -1,6 +1,14 @@
+.button {
+    display: flex;
+    justify-content: center;
+}
+
 #arrow {
-    font-size: 60px;
+    position: fixed;
+    font-size: 70px;
     transition: 0.3s;
+    bottom: 300px;
+    cursor: pointer;
 }
 
 #arrow:hover {

@@ -36,6 +36,12 @@ class App extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
+  
+  componentDidMount() {
+    setTimeout(() => this.setState({
+      isInitiated: true,
+    }), 2000);
+  }
 
   handleClick() {
     if (this.state.index === 0) {
@@ -50,11 +56,12 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <NavBar />
         <Header />
-        <Quotes quote={quotes[this.state.index].quote} name={'- ' + quotes[this.state.index].name} />
+        { this.state.isInitiated && <Quotes quote={quotes[this.state.index].quote} name={'- ' + quotes[this.state.index].name} />} 
         <Button onClick={this.handleClick} />
       </div>
     );
