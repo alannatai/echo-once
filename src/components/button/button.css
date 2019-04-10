@@ -1,0 +1,16 @@
+.arrow-container {
+    display: flex;
+    justify-content: center;
+}
+
+#arrow {
+    position: fixed;
+    font-size: 70px;
+    transition: 0.3s;
+    bottom: 20rem;
+    cursor: pointer;
+}
+
+#arrow:hover {
+    color: pink;
+}

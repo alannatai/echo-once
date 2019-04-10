@@ -2,13 +2,15 @@
     text-align: center;
     font-family: 'Cardo', serif;
     color: black;
-    padding: 2em;
-    width: 75%;
+    line-height: 3.25rem;
+    padding: 2rem;
+    width: 70%;
+    height: 30rem;
     margin: 0 auto 0 auto;
 }
 
 .overlay {
-    font-size: 40px;
+    font-size: 2.5rem;
     font-weight: 300;
 }
 
@@ -45,34 +47,42 @@
 }
 .overlay span:nth-child(10n+1) {
     animation-delay: 0.45s;
+    top: 0;
 }
 .overlay span:nth-child(10n+5) {
     animation-delay: 0.5s;
+    top: 0;
 }
 .overlay span:nth-child(10n+12) {
-    animation-delay: 0.6s;
+    animation-delay: 0.65s;
+    top: 0;
 }
 .overlay span:nth-child(10n+10) {
-    animation-delay: 0.75s;
+    animation-delay: 0.85s;
+    top: 0;
 }
 .overlay span:nth-child(10n+4) {
-    animation-delay: 0.9s;
+    animation-delay: 1s;
+    top: 0;
 }
 .overlay span:nth-child(10n+8) {
     animation-delay: 1.25s;
+    top: 0;
 }
 .overlay span:nth-child(10n+2) {
     animation-delay: 1.5s;
+    top: 0;
 }
 
 .overlay2 {
-    font-size: 30px;
+    font-size: 1.9rem;
     font-weight: 300;
     position: relative;
+    padding-top: 5rem;
     opacity: 0;
     top: 1.5em;
     animation: animateOverlay 1.7s ease-in-out forwards;
-    animation-delay: 2.5s;
+    animation-delay: 1.75s;
 }
 
 @keyframes animateOverlay {
