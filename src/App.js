@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import 'reset-css';
 import Quotes from './components/quotes/quotes';
 import Button from './components/button/button';
 import Header from './components/header/header';
@@ -44,24 +44,17 @@ class App extends Component {
   }
 
   handleClick() {
-    if (this.state.index === 0) {
-      this.setState({
-        index: quotes.length - 1
-      })
-    } else {
-      this.setState({
-        index: this.state.index - 1
-      })
-    }
+    this.setState({
+      index: this.state.index === 0 ? (quotes.length -1) : (this.state.index -1)
+    })
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         <NavBar />
         <Header />
-        { this.state.isInitiated && <Quotes quote={quotes[this.state.index].quote} name={'- ' + quotes[this.state.index].name} />} 
+        {this.state.isInitiated && <Quotes quote={quotes[this.state.index].quote} name={`- ${quotes[this.state.index].name}`} />} 
         <Button onClick={this.handleClick} />
       </div>
     );

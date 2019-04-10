@@ -1,4 +1,4 @@
-.button {
+.arrow-container {
     display: flex;
     justify-content: center;
 }
@@ -7,7 +7,7 @@
     position: fixed;
     font-size: 70px;
     transition: 0.3s;
-    bottom: 300px;
+    bottom: 20rem;
     cursor: pointer;
 }
 

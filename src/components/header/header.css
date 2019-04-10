@@ -1,12 +1,13 @@
 .header {
+    font-family: -apple-system, BlinkMacSystemFont, 'Work Sans', sans-serif;
     font-weight: bolder;
     display: flex;
     justify-content: center;
-    font-size: 50px;;
+    font-size: 7rem;;
     color: black;
     margin: 0 auto;
-    padding-top: 30px;
-    padding-bottom: 0px;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 }
   
 .flip-vertical-right {
@@ -55,8 +56,8 @@
   }
   @keyframes slide-in-left {
     0% {
-      -webkit-transform: translateX(-35px);
-              transform: translateX(-35px);
+      -webkit-transform: translateX(-28px);
+              transform: translateX(-28px);
       opacity: 0;
     }
     100% {

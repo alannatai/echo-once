@@ -1,9 +1,11 @@
 nav {
+    font-family: 'Work Sans';
+    font-size: 1.1rem;
     display: flex;
     justify-content: space-between;
     width: 100%;
     background-color: black;
-    padding-left: 10px;
+    padding: 1.5rem 1.5rem;
 }
 
 nav ul {
@@ -12,11 +14,7 @@ nav ul {
 
 nav ul li {
     display: inline-block;
-    margin-right: 20px;
-}
-
-nav ul li a {
+    margin-right: 1.5rem;
     text-decoration: none;
     color: white;
-    width: 60px;
 }
