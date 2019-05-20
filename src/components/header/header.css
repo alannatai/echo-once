@@ -38,8 +38,8 @@
   
   
   .slide-in-left {
-	-webkit-animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
-	        animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+	-webkit-animation: slide-in-left 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+	        animation: slide-in-left 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
 }
 
  @-webkit-keyframes slide-in-left {
