@@ -5,18 +5,11 @@ import Button from './components/button/button';
 import Header from './components/header/header';
 import NavBar from './components/navbar/navbar';
 
-//let quotes = [];
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quotes: [
-        {
-          quote: '"Learn the rules like a pro, so you can break them like an artist."',
-          name: 'Pablo Picasso'
-        }
-      ],
+      quotes: undefined,
       index: null
     };
     this.handleClick = this.handleClick.bind(this);
@@ -29,13 +22,14 @@ class App extends Component {
         if (res && res.data) {
           this.setState(
             {
-              quotes: [...this.state.quotes, ...res.data], 
-              index: this.state.quotes.length - 1
+              quotes: res.data, 
+              index: res.data.length - 1
             }
           );
         };
       });
-
+    
+    //delay for Header animation 
     setTimeout(() => this.setState({
       isInitiated: true,
     }), 2000);
@@ -46,13 +40,19 @@ class App extends Component {
       index: this.state.index === 0 ? (this.state.quotes.length -1) : (this.state.index -1)
     })
   }
-
+  
   render() {
+    console.log(this.state.quotes);
+    console.log(this.state.index);
     return (
       <div className="App">
         <NavBar />
         <Header />
-        {this.state.isInitiated && <Quotes quote={this.state.quotes[this.state.index].quote} name={`- ${this.state.quotes[this.state.index].name}`} />} 
+          {
+            this.state.isInitiated == true && this.state.index !== null && this.state.quotes[this.state.index] !== undefined 
+            ? <Quotes quote={this.state.quotes[this.state.index].quote} name={`- ${this.state.quotes[this.state.index].name}`} /> 
+            : <div></div>
+          } 
         <Button onClick={this.handleClick} />
       </div>
     );
