@@ -4,7 +4,7 @@ import './button.css';
 export default function Button(props) {
     return (
         <div className="arrow-container">
-            <i class="far fa-arrow-alt-circle-right" id="arrow" onClick={props.onClick}></i>
+            <i className="far fa-arrow-alt-circle-right" id="arrow" onClick={props.onClick}></i>
         </div>
         
     )

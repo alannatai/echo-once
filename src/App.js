@@ -5,39 +5,31 @@ import Button from './components/button/button';
 import Header from './components/header/header';
 import NavBar from './components/navbar/navbar';
 
-const quotes = [
-  {
-    quote: '"I\'m not the strongest. I\'m not the fastest. But I\'m really good at suffering."',
-    name: 'Amelia Boone'
-  },
-  {
-    quote: '"It\'s unfortunate that this has happened. No. It\'s fortunate that this has happened and I\'ve remained unharmed."',
-    name: 'Marcus Aurelius'
-  },
-  {
-    quote: '"...there\'s only one really good question, which is, \'What am I unwilling to feel?\'"',
-    name: 'Tara Brach'
-  },
-  {
-    quote: '"You must want to be a butterfly so badly, you are willing to give up being a caterpillar."',
-    name: 'Sekou Andrews'
-  },
-  {
-    quote: '"Learn the rules like a pro, so you can break them like an artist."',
-    name: 'Pablo Picasso'
-  }
-]
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: quotes.length - 1
+      quotes: undefined,
+      index: null
     };
     this.handleClick = this.handleClick.bind(this);
   }
   
   componentDidMount() {
+    fetch('http://localhost:3000/quotes')
+      .then(response => response.json())
+      .then(res => {
+        if (res && res.data) {
+          this.setState(
+            {
+              quotes: res.data, 
+              index: res.data.length - 1
+            }
+          );
+        };
+      });
+    
+    //delay for Header animation 
     setTimeout(() => this.setState({
       isInitiated: true,
     }), 2000);
@@ -45,16 +37,22 @@ class App extends Component {
 
   handleClick() {
     this.setState({
-      index: this.state.index === 0 ? (quotes.length -1) : (this.state.index -1)
+      index: this.state.index === 0 ? (this.state.quotes.length -1) : (this.state.index -1)
     })
   }
-
+  
   render() {
+    console.log(this.state.quotes);
+    console.log(this.state.index);
     return (
       <div className="App">
         <NavBar />
         <Header />
-        {this.state.isInitiated && <Quotes quote={quotes[this.state.index].quote} name={`- ${quotes[this.state.index].name}`} />} 
+          {
+            this.state.isInitiated == true && this.state.index !== null && this.state.quotes[this.state.index] !== undefined 
+            ? <Quotes quote={this.state.quotes[this.state.index].quote} name={`- ${this.state.quotes[this.state.index].name}`} /> 
+            : <div></div>
+          } 
         <Button onClick={this.handleClick} />
       </div>
     );
