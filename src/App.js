@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import 'reset-css';
 
-import Router from './Router';
 import Quotes from './components/quotes/quotes';
 import Button from './components/button/button';
 import Header from './components/header/header';
 import NavBar from './components/navbar/navbar';
-import Submit from './components/submit/submit';
 
 class App extends Component {
   constructor(props) {
@@ -47,7 +45,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router />
         <NavBar />
         <Header />
           {
