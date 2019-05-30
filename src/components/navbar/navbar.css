@@ -8,13 +8,17 @@ nav {
     padding: 1.5rem 1.5rem;
 }
 
-nav ul {
+ul {
     list-style: none;
 }
 
-nav ul li {
+li {
     display: inline-block;
     margin-right: 1.5rem;
     text-decoration: none;
     color: white;
+}
+
+a:hover {
+    cursor: pointer;
 }
