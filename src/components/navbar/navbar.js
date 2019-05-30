@@ -1,22 +1,22 @@
 import React from 'react';
 import './navbar.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function NavBar(props) {
     return (
         <nav>
             <ul>
                 <li>
-                    <a>Home</a>
+                    <NavLink exact to="/" className="link" activeStyle={{color: "pink", fontWeight: "bold"}}>Home</NavLink>
                 </li>
                 <li>
-                    <a>About</a>
+                    <NavLink to="/about" className="link" activeStyle={{color: "pink", fontWeight: "bold"}}>About</NavLink>
                 </li>
                 <li>
-                    <a>Submit</a>
+                    <NavLink to="/submit" className="link" activeStyle={{color: "pink", fontWeight: "bold"}}>Submit</NavLink>
                 </li>
                 <li>
-                    <a>Log In</a>
+                    <NavLink to="/login" className="link" activeStyle={{color: "pink", fontWeight: "bold"}}>Log In</NavLink>
                 </li>
             </ul>
         </nav>
