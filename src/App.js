@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'reset-css';
+
 import Quotes from './components/quotes/quotes';
 import Button from './components/button/button';
 import Header from './components/header/header';
@@ -42,15 +43,13 @@ class App extends Component {
   }
   
   render() {
-    console.log(this.state.quotes);
-    console.log(this.state.index);
     return (
       <div className="App">
         <NavBar />
         <Header />
           {
             this.state.isInitiated == true && this.state.index !== null && this.state.quotes[this.state.index] !== undefined 
-            ? <Quotes quote={this.state.quotes[this.state.index].quote} name={`- ${this.state.quotes[this.state.index].name}`} /> 
+            ? <Quotes quote={this.state.quotes[this.state.index].quote} author={`- ${this.state.quotes[this.state.index].author}`} /> 
             : <div></div>
           } 
         <Button onClick={this.handleClick} />
