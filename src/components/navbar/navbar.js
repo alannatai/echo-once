@@ -1,23 +1,38 @@
 import React from 'react';
 import './navbar.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export default function NavBar(props) {
+const links = [
+    {
+        path: '/',
+        name: 'Home'
+    },
+    {
+        path: '/about',
+        name: 'About'
+    },
+    {
+        path: '/submit',
+        name: 'Submit'
+    },
+    {
+        path: '/login',
+        name: 'Log In'
+    },
+];
+
+let navLinks = 
+    links.map(link => {
+        return (<li>
+            <NavLink exact to={link.path} className="link" activeStyle={{color: "pink", fontWeight: "bold"}}>{link.name}</NavLink>
+        </li>)
+    });
+
+export default function NavBar(props) {    
     return (
         <nav>
             <ul>
-                <li>
-                    <a>Home</a>
-                </li>
-                <li>
-                    <a>About</a>
-                </li>
-                <li>
-                    <a>Submit</a>
-                </li>
-                <li>
-                    <a>Log In</a>
-                </li>
+                {navLinks}
             </ul>
         </nav>
     )

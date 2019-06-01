@@ -6,7 +6,7 @@ export default class Submit extends Component {
         super(props);
         this.state = {
             quote: '',
-            name: ''
+            author: ''
         }
     };
 

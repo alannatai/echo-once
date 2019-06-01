@@ -4,7 +4,6 @@ import 'reset-css';
 import Quotes from './components/quotes/quotes';
 import Button from './components/button/button';
 import Header from './components/header/header';
-import NavBar from './components/navbar/navbar';
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +44,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
         <Header />
           {
             this.state.isInitiated == true && this.state.index !== null && this.state.quotes[this.state.index] !== undefined 
