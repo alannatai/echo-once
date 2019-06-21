@@ -9,6 +9,7 @@ import NavBar from './components/navbar/navbar';
 import About from './components/about/about';
 import Submit from './components/submit/submit';
 import Login from './components/login/login';
+import FormikLogin from './components/login/login';
 import Error from './Error';
 
 ReactDOM.render(
@@ -19,7 +20,12 @@ ReactDOM.render(
                 <Route path="/" component={App} exact />
                 <Route path="/about" component={About} />
                 <Route path="/submit" component={Submit} />
-                <Route path="/login" component={Login} />
+                <Route
+                    path="/login"
+                    render={(routeProps) => (
+                        <FormikLogin {...routeProps} email="alanna.tai@hotmail.com" />
+                    )}
+                />
                 <Route component={Error} />
             </Switch>
         </div>

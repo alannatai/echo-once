@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'reset-css';
+import axios from 'axios';
 
 import Quotes from './components/quotes/quotes';
 import Button from './components/button/button';
@@ -14,9 +15,21 @@ class App extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-  
+
   componentDidMount() {
-    fetch('http://localhost:3000/quotes')
+    axios.get('http://localhost:3000/quotes')
+      .then(res => {
+        if (res && res.data.quotes) {
+          this.setState(
+            {
+              quotes: res.data.quotes,
+              index: res.data.quotes.length - 1
+            }
+          );
+        };
+      });
+
+    /* fetch('http://localhost:3000/quotes')
       .then(response => response.json())
       .then(res => {
         if (res && res.data) {
@@ -27,8 +40,8 @@ class App extends Component {
             }
           );
         };
-      });
-    
+      }); */
+
     //delay for Header animation 
     setTimeout(() => this.setState({
       isInitiated: true,
@@ -37,19 +50,19 @@ class App extends Component {
 
   handleClick() {
     this.setState({
-      index: this.state.index === 0 ? (this.state.quotes.length -1) : (this.state.index -1)
+      index: this.state.index === 0 ? (this.state.quotes.length - 1) : (this.state.index - 1)
     })
   }
-  
+
   render() {
     return (
       <div className="App">
         <Header />
-          {
-            this.state.isInitiated == true && this.state.index !== null && this.state.quotes[this.state.index] !== undefined 
-            ? <Quotes quote={this.state.quotes[this.state.index].quote} author={`- ${this.state.quotes[this.state.index].author}`} /> 
-            : <div></div>
-          } 
+        {
+          this.state.isInitiated == true && this.state.index !== null && this.state.quotes[this.state.index] !== undefined
+            ? <Quotes quote={this.state.quotes[this.state.index].quote} author={`- ${this.state.quotes[this.state.index].author}`} />
+            : <div></div> 
+        }
         <Button onClick={this.handleClick} />
       </div>
     );
