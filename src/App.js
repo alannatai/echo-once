@@ -16,7 +16,7 @@ class App extends Component {
   }
   
   componentDidMount() {
-    fetch('http://localhost:3000/quotes')
+    fetch('http://localhost:4000/quotes')
       .then(response => response.json())
       .then(res => {
         if (res && res.data) {
@@ -46,7 +46,7 @@ class App extends Component {
       <div className="App">
         <Header />
           {
-            this.state.isInitiated == true && this.state.index !== null && this.state.quotes[this.state.index] !== undefined 
+            this.state.isInitiated && this.state.index !== null && !this.state.quotes[this.state.index]
             ? <Quotes quote={this.state.quotes[this.state.index].quote} author={`- ${this.state.quotes[this.state.index].author}`} /> 
             : <div></div>
           } 
