@@ -3,7 +3,7 @@ import './about.css';
 
 export default function About(props) {
     return (
-        <div>
+        <div className="about">
             Welcome to Echo Once! 
         </div>
     )

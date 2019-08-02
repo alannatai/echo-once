@@ -44,7 +44,7 @@ export default class Submit extends Component {
     render() {
         const { id, quote, author } = this.state
         return (
-            <div>
+            <div className="submit-form">
                 <form onSubmit={this.submitHandler}>
                     <div>
                         <input type="text" name="quote" value={quote} placeholder="Enter Quote" onChange={this.changeHandler} />
@@ -52,7 +52,7 @@ export default class Submit extends Component {
                     <div>
                         <input type="text" name="author" value={author} placeholder="Enter Author" onChange={this.changeHandler} />
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="btn btn-dark">Submit</button>
                 </form>
 
                 <form onSubmit={this.updateHandler}>
@@ -65,14 +65,14 @@ export default class Submit extends Component {
                     <div>
                         <input type="text" name="author" value={author} placeholder="Update Author" onChange={this.changeHandler} />
                     </div>
-                    <button type="submit">Update</button>
+                    <button type="submit" className="btn btn-dark">Update</button>
                 </form>
 
                 <form onSubmit={this.deleteHandler}>
                     <div>
                         <input type="text" name="id" value={id} placeholder="Delete Id" onChange={this.changeHandler} />
                     </div>
-                    <button type="submit">Delete</button>
+                    <button type="submit" className="btn btn-dark">Delete</button>
                 </form>
             </div>
         );

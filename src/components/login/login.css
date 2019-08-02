@@ -1,0 +1,9 @@
+#login {
+    font-family: 'Work Sans';
+    padding-top: 3rem;
+}
+
+#form {
+    display: flex;
+    justify-content: center;
+}

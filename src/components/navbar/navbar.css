@@ -4,7 +4,6 @@ nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background-color: black;
     padding: 1.5rem 1.5rem;
 }
 
@@ -19,9 +18,12 @@ li {
 
 .link {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
-NavLink:hover {
+.link:hover {
+    text-decoration: none;
+    color: pink;
+    font-weight: bold;
     cursor: pointer;
 }

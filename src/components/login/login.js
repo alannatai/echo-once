@@ -6,15 +6,22 @@ import Yup from 'yup';
 const Login = ({
     values
 }) => (
-        <Form>
-            <div>
-                <Field type="email" name="email" placeholder="Email" />
+        <div className='row' id="login">
+            <div className='col' id="form">
+                <Form>
+                    <div>
+                        <Field type="email" name="email" placeholder="Email" />
+                    </div>
+                    <div>
+                        <Field type="password" name="password" placeholder="Password" />
+                    </div>
+                    <button className="btn btn-dark">Log In</button>
+                </Form>
             </div>
-            <div>
-                <Field type="password" name="password" placeholder="Password" />
+            <div className='col' id="form">
+                Facebook Google 
             </div>
-            <button>Submit</button>
-        </Form>
+        </div>
     );
 
 const FormikLogin = withFormik({
