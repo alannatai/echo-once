@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
 
 import App from './App';
 import NavBar from './components/navbar/navbar';
@@ -10,26 +13,26 @@ import About from './components/about/about';
 import Submit from './components/submit/submit';
 import Login from './components/login/login';
 import FormikLogin from './components/login/login';
+import Signup from './components/signup/signup';
 import Error from './Error';
+import reducers from './reducers';
 
 ReactDOM.render(
-    <BrowserRouter>
-        <div>
-            <NavBar />
-            <Switch>
-                <Route path="/" component={App} exact />
-                <Route path="/about" component={About} />
-                <Route path="/submit" component={Submit} />
-                <Route
-                    path="/login"
-                    render={(routeProps) => (
-                        <FormikLogin {...routeProps} email="alanna.tai@hotmail.com" />
-                    )}
-                />
-                <Route component={Error} />
-            </Switch>
-        </div>
-    </BrowserRouter>
+    <Provider store={createStore(reducers, {}, applyMiddleware(reduxThunk))}>
+        <BrowserRouter>
+            <div>
+                <NavBar />
+                <Switch>
+                    <Route path="/" component={App} exact />
+                    <Route path="/about" component={About} />
+                    <Route path="/submit" component={Submit} />
+                    
+                    <Route path="/signup" component={Signup} />
+                    <Route component={Error} />
+                </Switch>
+            </div>
+        </BrowserRouter>
+    </Provider>
     , document.getElementById('root')
 );
 

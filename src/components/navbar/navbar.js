@@ -5,25 +5,34 @@ import { NavLink } from 'react-router-dom';
 const links = [
     {
         path: '/',
-        name: 'Home'
+        name: 'Home',
+        key: 'home'
     },
     {
         path: '/about',
-        name: 'About'
+        name: 'About',
+        key: 'about'
     },
     {
         path: '/submit',
-        name: 'Submit'
+        name: 'Submit',
+        key: 'submit'
     },
     {
         path: '/login',
-        name: 'Log In'
+        name: 'Log In',
+        key: 'login'
     },
+    {
+        path: '/signup',
+        name: 'Sign Up',
+        key: 'signup'
+    }
 ];
 
 let navLinks = 
     links.map(link => {
-        return (<li>
+        return (<li key={link.key}>
             <NavLink exact to={link.path} className="link" activeStyle={{color: "pink", fontWeight: "bold"}}>{link.name}</NavLink>
         </li>)
     });

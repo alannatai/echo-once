@@ -1,27 +1,32 @@
 import React from 'react';
 import './login.css';
-import { withFormik, Form, Field } from 'formik';
+import { reduxForm, Field } from 'redux-form';
 import Yup from 'yup';
-
+/*
 const Login = ({
-    values
+    values,
+    errors,
+    touched,
+    isSubmitting
 }) => (
-        <div className='row' id="login">
-            <div className='col' id="form">
+        <div className="row" id="login">
+            <div className="col" id="form">
                 <Form>
                     <div>
-                        <Field type="email" name="email" placeholder="Email" />
+                        { touched.email && errors.email && <p>{errors.email}</p> }
+                        <Field class="form-control" type="email" name="email" placeholder="Email" />
                     </div>
                     <div>
-                        <Field type="password" name="password" placeholder="Password" />
+                        { touched.password && errors.password && <p>{errors.password}</p> }
+                        <Field class="form-control" type="password" name="password" placeholder="Password" />
                     </div>
-                    <button className="btn btn-dark">Log In</button>
+                    <button type="submit" disabled={isSubmitting} className="btn btn-dark">Log In</button>
                 </Form>
             </div>
-            <div className='col' id="form">
+            <div className="col" id="form">
                 Facebook Google 
             </div>
-        </div>
+        </div> 
     );
 
 const FormikLogin = withFormik({
@@ -31,9 +36,20 @@ const FormikLogin = withFormik({
             password: password || ''
         }
     },
-    handleSubmit(values) {
-        console.log(values);
-    }
+    validationSchema: Yup.object().shape({
+        email: Yup.string().email('Invalid email').required('Email is required'),
+        password: Yup.string().min(8, 'Password must be at least 8 characters').required('Password is required')
+    }),
+    handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+        setTimeout(() => {
+            if(values.email === 'oyaida@msn.com') {
+                setErrors({ email: 'That email is already taken' })
+            } else {
+                resetForm()
+            }
+            setSubmitting(false)
+        }, 1000)
+
 })(Login);
 
-export default FormikLogin; 
+export default FormikLogin; */
