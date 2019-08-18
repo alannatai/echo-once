@@ -10,7 +10,6 @@ import GoogleLogin from 'react-google-login';
 import * as actions from '../../actions';
 import CustomInput from '../custominputs';
 
-
 const schema = Yup.object().shape({
     email: Yup
         .string()
@@ -70,7 +69,6 @@ class Signup extends Component {
                 <div className="col" id="form">
                     <form onSubmit={handleSubmit(this.onSubmit)}>
                         <fieldset>
-                            
                             <Field
                                 type="email"
                                 name="email"
@@ -80,7 +78,6 @@ class Signup extends Component {
                             />
                         </fieldset>
                         <fieldset>
-                            
                             <Field
                                 type="password"
                                 name="password"
@@ -106,7 +103,7 @@ class Signup extends Component {
                         </div>
 
                         <FacebookLogin
-                            appId="220900356921608"
+                            appId="220900356921608" 
                             textButton="Sign up with Facebook"
                             fields="name,email,picture"
                             callback={this.responseFacebook}
@@ -139,31 +136,3 @@ export default compose(
         asyncValidate: validator(schema)
     })
 )(Signup);
-
-/* const FormikSignup = withFormik({
-    mapPropsToValues({ email, password }) {
-        return {
-            email: email || '',
-            password: password || ''
-            //push history to values
-        }
-    },
-    validationSchema: Yup.object().shape({
-        email: Yup.string().email('Invalid email').required('Email is required'),
-        password: Yup.string().min(8, 'Password must be at least 8 characters').required('Password is required')
-    })
-
-    {props.touched.email && props.errors.email && <p>{props.errors.email}</p>}
-    {props.touched.password && props.errors.password && <p>{props.errors.password}</p>}
-
-    ,
-    async handleSubmit(values, { props, resetForm, setSubmitting }) {
-        await props.signUp(values);
-        console.log('ERROR MESSAGE:', props)
-        if (!props) {
-            props.history.push('/')
-        };
-        setSubmitting(false);
-        resetForm();
-    }
-})(Signup); */

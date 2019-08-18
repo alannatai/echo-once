@@ -12,13 +12,19 @@ import NavBar from './components/navbar/navbar';
 import About from './components/about/about';
 import Submit from './components/submit/submit';
 import Login from './components/login/login';
-import FormikLogin from './components/login/login';
 import Signup from './components/signup/signup';
 import Error from './Error';
 import reducers from './reducers';
 
+const jwtToken = localStorage.getItem('JWT_TOKEN');
+
 ReactDOM.render(
-    <Provider store={createStore(reducers, {}, applyMiddleware(reduxThunk))}>
+    <Provider store={createStore(reducers, {
+        auth: {
+            token: jwtToken,
+            isAuthenticated: jwtToken ? true : false
+        }
+    }, applyMiddleware(reduxThunk))}>
         <BrowserRouter>
             <div>
                 <NavBar />

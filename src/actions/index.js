@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_SIGN_UP, AUTH_ERROR } from './types';
+import { AUTH_SIGN_UP, AUTH_SIGN_OUT, AUTH_ERROR } from './types';
 
 //actionCreators
 
@@ -16,7 +16,7 @@ export const oauthFacebook = data => {
 
         localStorage.setItem('JWT_TOKEN', res.data.token);
     };
-};
+}
 
 export const oauthGoogle = data => {
     return async dispatch => {
@@ -31,7 +31,7 @@ export const oauthGoogle = data => {
 
         localStorage.setItem('JWT_TOKEN', res.data.token);
     };
-};
+}
 
 export const signUp = data => {
     return async dispatch => {
@@ -50,7 +50,18 @@ export const signUp = data => {
             dispatch({
                 type: AUTH_ERROR,
                 payload: 'Email is already in use'
-            });
-        };
+            })
+        }
     };
-};
+}
+
+export const signOut = () => {
+    return dispatch => {
+        localStorage.removeItem('JWT_TOKEN');
+
+        dispatch({
+            type: AUTH_SIGN_OUT,
+            payload: ''
+        })
+    };
+}
