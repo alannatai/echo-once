@@ -53,11 +53,11 @@ const navLinksRight =
 class NavBar extends Component {
     constructor(props) {
         super(props);
-        this.signOut = this.signOut.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
-    signOut() {
-        this.props.signOut();
+    logOut() {
+        this.props.logOut();
     }
 
     render() {
@@ -69,8 +69,8 @@ class NavBar extends Component {
                 <ul>
                     { !this.props.isAuth ? navLinksRight : null }
                     { this.props.isAuth ?
-                        <li key="signout">
-                            <NavLink className="link" onClick={this.signOut} onMouseOver={{ color: "pink", fontWeight: "bold" }}>Sign Out</NavLink>
+                        <li key="logout">
+                            <NavLink exact to="/" className="link" onClick={this.logOut}>Log out</NavLink>
                         </li> : null }
                 </ul>
             </nav>

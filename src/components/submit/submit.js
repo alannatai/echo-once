@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './submit.css';
 import axios from 'axios';
-import { withFormik, Form, Field } from 'formik';
+import { connect } from 'react-redux';
 
-export default class Submit extends Component {
+import * as actions from '../../actions';
+
+class Submit extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,6 +14,10 @@ export default class Submit extends Component {
             author: ''
         }
     };
+
+    async componentDidMount() {
+        this.props.getSecret()
+    }
 
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -43,38 +49,49 @@ export default class Submit extends Component {
 
     render() {
         const { id, quote, author } = this.state
+        console.log(this.props)
         return (
-            <div className="submit-form">
-                <form onSubmit={this.submitHandler}>
-                    <div>
-                        <input type="text" name="quote" value={quote} placeholder="Enter Quote" onChange={this.changeHandler} />
-                    </div>
-                    <div>
-                        <input type="text" name="author" value={author} placeholder="Enter Author" onChange={this.changeHandler} />
-                    </div>
-                    <button type="submit" className="btn btn-dark">Submit</button>
-                </form>
+            <div> <h3>Submitted Quotes Here: {this.props.secret}</h3>
+                <div className="submit-form">
+                    <form onSubmit={this.submitHandler}>
+                        <div>
+                            <input type="text" name="quote" value={quote} placeholder="Enter Quote" onChange={this.changeHandler} />
+                        </div>
+                        <div>
+                            <input type="text" name="author" value={author} placeholder="Enter Author" onChange={this.changeHandler} />
+                        </div>
+                        <button type="submit" className="btn btn-dark">Submit</button>
+                    </form>
 
-                <form onSubmit={this.updateHandler}>
-                    <div>
-                        <input type="text" name="id" value={id} placeholder="Update Id" onChange={this.changeHandler} />
-                    </div>
-                    <div>
-                        <input type="text" name="quote" value={quote} placeholder="Update Quote" onChange={this.changeHandler} />
-                    </div>
-                    <div>
-                        <input type="text" name="author" value={author} placeholder="Update Author" onChange={this.changeHandler} />
-                    </div>
-                    <button type="submit" className="btn btn-dark">Update</button>
-                </form>
+                    <form onSubmit={this.updateHandler}>
+                        <div>
+                            <input type="text" name="id" value={id} placeholder="Update Id" onChange={this.changeHandler} />
+                        </div>
+                        <div>
+                            <input type="text" name="quote" value={quote} placeholder="Update Quote" onChange={this.changeHandler} />
+                        </div>
+                        <div>
+                            <input type="text" name="author" value={author} placeholder="Update Author" onChange={this.changeHandler} />
+                        </div>
+                        <button type="submit" className="btn btn-dark">Update</button>
+                    </form>
 
-                <form onSubmit={this.deleteHandler}>
-                    <div>
-                        <input type="text" name="id" value={id} placeholder="Delete Id" onChange={this.changeHandler} />
-                    </div>
-                    <button type="submit" className="btn btn-dark">Delete</button>
-                </form>
+                    <form onSubmit={this.deleteHandler}>
+                        <div>
+                            <input type="text" name="id" value={id} placeholder="Delete Id" onChange={this.changeHandler} />
+                        </div>
+                        <button type="submit" className="btn btn-dark">Delete</button>
+                    </form>
+                </div>
             </div>
         );
     };
 };
+
+function mapStateToProps(state) {
+    return {
+        secret: state.submit.secret
+    }
+}
+
+export default connect(mapStateToProps, actions)(Submit)

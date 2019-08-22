@@ -38,7 +38,7 @@ class Signup extends Component {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.responseGoogle = this.responseGoogle.bind(this);
-        //this.responseFacebook = this.responseFacebook.bind(this);
+        this.responseFacebook = this.responseFacebook.bind(this);
     };
 
     async onSubmit(formData) {
@@ -48,12 +48,12 @@ class Signup extends Component {
         };
     };
 
-    /*async responseFacebook(res) {
+    async responseFacebook(res) {
         await this.props.oauthFacebook(res.accessToken);
         if (!this.props.errorMessage) {
             this.props.history.push('/');
         };
-    };*/
+    };
 
     async responseGoogle(res) {
         await this.props.oauthGoogle(res.accessToken);

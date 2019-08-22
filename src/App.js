@@ -28,19 +28,6 @@ class App extends Component {
         );
       };
     });
-
-    /*fetch('http://localhost:4000/quotes')
-      .then(response => response.json())
-      .then(res => {
-        if (res && res.data) {
-          this.setState(
-            {
-              quotes: res.data, 
-              index: res.data.length - 1
-            }
-          );
-        };
-      });*/
     
     //delay for Header animation 
     setTimeout(() => this.setState({
