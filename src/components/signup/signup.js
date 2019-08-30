@@ -23,14 +23,14 @@ const schema = Yup.object().shape({
 
 const validator = schema => formValues => {
     return schema.validate(formValues, { abortEarly: false })
-    .catch((errors) => {
-        throw errors.inner.reduce(
-            (errors, err) => ({
-                ...errors,
-                 [err.path]: err.message
-             }),
-        {});
-    });
+        .catch((errors) => {
+            throw errors.inner.reduce(
+                (errors, err) => ({
+                    ...errors,
+                    [err.path]: err.message
+                }),
+                {});
+        });
 };
 
 class Signup extends Component {
@@ -62,8 +62,17 @@ class Signup extends Component {
         };
     };
 
+    showPassword() {
+        const passwordField = document.getElementById("password");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    };
+
     render() {
-        const { handleSubmit} = this.props;
+        const { handleSubmit } = this.props;
         return (
             <div className="row" id="signup">
                 <div className="col" id="form">
@@ -85,6 +94,7 @@ class Signup extends Component {
                                 placeholder="Password"
                                 component={CustomInput}
                             />
+                            <input type="checkbox" onClick={this.showPassword} /> Show
                         </fieldset>
 
                         {this.props.errorMessage ?
@@ -103,7 +113,7 @@ class Signup extends Component {
                         </div>
 
                         <FacebookLogin
-                            appId="220900356921608" 
+                            appId="220900356921608"
                             textButton="Sign up with Facebook"
                             fields="name,email,picture"
                             callback={this.responseFacebook}
@@ -111,10 +121,11 @@ class Signup extends Component {
                         />
                         <GoogleLogin
                             clientId="678945436199-ktbs3ii6fn79q37hn1hfqbpn0qg0cfd0.apps.googleusercontent.com"
-                            buttonText="Sign up with Google"
+                            render={renderProps => (
+                                <button className="btn btn-outline-danger" onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign up with Google</button>
+                            )}
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
-                            className="btn btn-outline-danger"
                         />
                     </div>
                 </div>

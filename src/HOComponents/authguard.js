@@ -19,7 +19,9 @@ export default (OriginalComponent) => {
         }
 
         render() {
-            return <OriginalComponent {...this.props} />;
+            return (
+                <OriginalComponent {...this.props} />
+            );
         }
     }
 

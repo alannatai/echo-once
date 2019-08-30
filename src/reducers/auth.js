@@ -6,6 +6,7 @@ import {
 
 const DEFAULT_STATE = {
     isAuthenticated: false,
+    methods: [],
     token: '',
     errorMessage: ''
 };
@@ -14,13 +15,14 @@ export default (state = DEFAULT_STATE, action) => {
     switch (action.type) {
         case AUTH_SIGN_UP:
             console.log('auth reducer got an AUTH_SIGN_UP action')
-            return { ...state, token: action.payload, isAuthenticated: true, errorMessage: '' }
+            console.log('action.payload', action.payload)
+            return { ...state, token: action.payload.token, methods: action.payload.methods, isAuthenticated: true, errorMessage: '' }
         case AUTH_LOG_IN:
             console.log('auth reducer got an AUTH_LOG_IN action')
-            return { ...state, token: action.payload, isAuthenticated: true, errorMessage: '' }
+            return { ...state, token: action.payload.token, methods: action.payload.methods, isAuthenticated: true, errorMessage: '' }
         case AUTH_LOG_OUT:
             console.log('auth reducer got an AUTH_SIGN_OUT action')
-            return { ...state, token: action.payload, isAuthenticated: false, errorMessage: '' }
+            return { ...state, token: action.payload.token, methods: [], isAuthenticated: false, errorMessage: '' }
         case AUTH_ERROR:
             console.log('auth reducer got an AUTH_ERROR action')
             return { ...state, errorMessage: action.payload }

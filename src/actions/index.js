@@ -16,7 +16,7 @@ export const oauthFacebook = data => {
 
         dispatch({
             type: AUTH_SIGN_UP,
-            payload: res.data.token
+            payload: res.data
         });
 
         localStorage.setItem('JWT_TOKEN', res.data.token);
@@ -32,11 +32,39 @@ export const oauthGoogle = data => {
 
         dispatch({
             type: AUTH_SIGN_UP,
-            payload: res.data.token
+            payload: res.data
         });
 
         localStorage.setItem('JWT_TOKEN', res.data.token);
         axios.defaults.headers.common['Authorization'] = res.data.token;
+    };
+}
+
+export const linkFacebook = data => {
+    return async dispatch => {
+        const res = await axios.post('http://localhost:4000/users/oauth/link/facebook', {
+            access_token: data
+        });
+
+        console.log('res in action creator', res)
+        /*dispatch({
+            type: AUTH_SIGN_UP,
+            payload: res.data.token
+        });*/
+    };
+}
+
+export const linkGoogle = data => {
+    return async dispatch => {
+        const res = await axios.post('http://localhost:4000/users/oauth/link/google', {
+            access_token: data
+        });
+
+        console.log('res in action creator', res)
+        /*dispatch({
+            type: AUTH_SIGN_UP,
+            payload: res.data.token
+        });*/
     };
 }
 
@@ -49,7 +77,7 @@ export const signUp = data => {
             console.log('action creator dispatched an action')
             dispatch({
                 type: AUTH_SIGN_UP,
-                payload: res.data.token
+                payload: res.data
             });
 
             localStorage.setItem('JWT_TOKEN', res.data.token);
@@ -72,7 +100,7 @@ export const logIn = data => {
             console.log('action creator dispatched an action')
             dispatch({
                 type: AUTH_LOG_IN,
-                payload: res.data.token
+                payload: res.data
             });
 
             localStorage.setItem('JWT_TOKEN', res.data.token);

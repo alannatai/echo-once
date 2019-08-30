@@ -51,7 +51,8 @@ class Submit extends Component {
         const { id, quote, author } = this.state
         console.log(this.props)
         return (
-            <div> <h3>Submitted Quotes Here: {this.props.secret}</h3>
+            <div> 
+                <h3>Submitted Quotes Here: {this.props.secret}</h3>
                 <div className="submit-form">
                     <form onSubmit={this.submitHandler}>
                         <div>
@@ -89,9 +90,11 @@ class Submit extends Component {
 };
 
 function mapStateToProps(state) {
+    console.log('state', state)
     return {
-        secret: state.submit.secret
+        secret: state.submit.secret,
+        auth: state.auth
     }
 }
 
-export default connect(mapStateToProps, actions)(Submit)
+export default connect(mapStateToProps, actions)(Submit);

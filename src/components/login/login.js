@@ -23,14 +23,14 @@ const schema = Yup.object().shape({
 
 const validator = schema => formValues => {
     return schema.validate(formValues, { abortEarly: false })
-    .catch((errors) => {
-        throw errors.inner.reduce(
-            (errors, err) => ({
-                ...errors,
-                 [err.path]: err.message
-             }),
-        {});
-    });
+        .catch((errors) => {
+            throw errors.inner.reduce(
+                (errors, err) => ({
+                    ...errors,
+                    [err.path]: err.message
+                }),
+                {});
+        });
 };
 
 class Login extends Component {
@@ -63,59 +63,64 @@ class Login extends Component {
     };
 
     render() {
-        const { handleSubmit} = this.props;
+        const { handleSubmit, isAuth } = this.props;
+        console.log(this.props);
         return (
-            <div className="row" id="login">
-                <div className="col" id="form">
-                    <form onSubmit={handleSubmit(this.onSubmit)}>
-                        <fieldset>
-                            <Field
-                                type="email"
-                                name="email"
-                                id="email"
-                                placeholder="Email"
-                                component={CustomInput}
-                            />
-                        </fieldset>
-                        <fieldset>
-                            <Field
-                                type="password"
-                                name="password"
-                                id="password"
-                                placeholder="Password"
-                                component={CustomInput}
-                            />
-                        </fieldset>
+            <div id="login">
+                {!isAuth && document.referrer === 'http://localhost:3000/submit' ? <div id="submit-warning" className="alert alert-danger">Log in to submit entries</div> : null}
+                <div className="row">
+                    <div className="col" id="form">
+                        <form onSubmit={handleSubmit(this.onSubmit)}>
+                            <fieldset>
+                                <Field
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    placeholder="Email"
+                                    component={CustomInput}
+                                />
+                            </fieldset>
+                            <fieldset>
+                                <Field
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    placeholder="Password"
+                                    component={CustomInput}
+                                />
+                            </fieldset>
 
-                        {this.props.errorMessage ?
-                            <div className="alert alert-danger">
-                                {this.props.errorMessage}
-                            </div> : null}
+                            {this.props.errorMessage ?
+                                <div className="alert alert-danger">
+                                    {this.props.errorMessage}
+                                </div> : null}
 
-                        <button type="submit" className="btn btn-dark">Log in</button>
-                    </form>
-                </div>
+                            <button type="submit" className="btn btn-dark">Log in</button>
+                        </form>
+                    </div>
 
-                <div className="col" id="form">
-                    <div className="text-center">
-                        <div className="alert alert-info">
-                            Log in with third-party services.
+                    <div className="col" id="form">
+                        <div className="text-center">
+                            <div className="alert alert-info">
+                                Log in with third-party services.
                         </div>
 
-                        <FacebookLogin
-                            appId="220900356921608" 
-                            textButton="Log in with Facebook"
-                            fields="name,email,picture"
-                            callback={this.responseFacebook}
-                            cssClass="btn btn-outline-primary"
-                        />
-                        <GoogleLogin
-                            clientId="678945436199-ktbs3ii6fn79q37hn1hfqbpn0qg0cfd0.apps.googleusercontent.com"
-                            buttonText="Log in with Google"
-                            onSuccess={this.responseGoogle}
-                            onFailure={this.responseGoogle}
-                            className="btn btn-outline-danger"
-                        />
+                            <FacebookLogin
+                                appId="220900356921608"
+                                textButton="Log in with Facebook"
+                                fields="name,email,picture"
+                                callback={this.responseFacebook}
+                                cssClass="btn btn-outline-primary"
+                            />
+                            <GoogleLogin
+                                clientId="678945436199-ktbs3ii6fn79q37hn1hfqbpn0qg0cfd0.apps.googleusercontent.com"
+                                render={renderProps => (
+                                    <button className="btn btn-outline-danger" onClick={renderProps.onClick} disabled={renderProps.disabled}>Log in with Google</button>
+                                )}
+                                onSuccess={this.responseGoogle}
+                                onFailure={this.responseGoogle}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,7 +130,8 @@ class Login extends Component {
 
 function mapStateToProps(state) {
     return {
-        errorMessage: state.auth.errorMessage
+        errorMessage: state.auth.errorMessage,
+        isAuth: state.auth.isAuthenticated
     };
 };
 
