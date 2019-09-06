@@ -20,7 +20,9 @@ export default (OriginalComponent) => {
 
         render() {
             return (
-                <OriginalComponent {...this.props} />
+                <div>
+                    <OriginalComponent {...this.props} />
+                </div>
             );
         }
     }

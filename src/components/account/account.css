@@ -1,0 +1,15 @@
+.account {
+    font-family: 'Work Sans';
+    padding-top: 3rem;
+}
+
+h3 {
+    text-align: center;
+    margin: 1rem;
+    width: 35rem;
+}
+
+button {
+    margin: 1rem 0rem 1rem 1rem;
+    width: 17rem;
+}

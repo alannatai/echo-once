@@ -16,7 +16,7 @@ class Submit extends Component {
     };
 
     async componentDidMount() {
-        this.props.getSecret()
+        this.props.getSubmitSecret()
     }
 
     changeHandler = e => {
@@ -92,7 +92,7 @@ class Submit extends Component {
 function mapStateToProps(state) {
     console.log('state', state)
     return {
-        secret: state.submit.secret,
+        secret: state.submit.submitSecret,
         auth: state.auth
     }
 }

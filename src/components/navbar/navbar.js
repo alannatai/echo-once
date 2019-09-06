@@ -12,11 +12,6 @@ const left = [
         key: 'home'
     },
     {
-        path: '/about',
-        name: 'About',
-        key: 'about'
-    },
-    {
         path: '/submit',
         name: 'Submit',
         key: 'submit'
@@ -64,14 +59,18 @@ class NavBar extends Component {
         return (
             <nav>
                 <ul>
-                    { navLinksLeft }
+                    {navLinksLeft}
+                    {this.props.isAuth ?
+                        <li key="account">
+                            <NavLink exact to="/account" className="link" activeStyle={{ color: "pink", fontWeight: "bold" }}>Account</NavLink>
+                        </li> : null}
                 </ul>
                 <ul>
-                    { !this.props.isAuth ? navLinksRight : null }
-                    { this.props.isAuth ?
+                    {!this.props.isAuth ? navLinksRight : null}
+                    {this.props.isAuth ?
                         <li key="logout">
                             <NavLink exact to="/" className="link" onClick={this.logOut}>Log out</NavLink>
-                        </li> : null }
+                        </li> : null}
                 </ul>
             </nav>
         )

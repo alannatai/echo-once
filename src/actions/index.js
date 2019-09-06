@@ -1,10 +1,16 @@
 import axios from 'axios';
-import { 
-    AUTH_SIGN_UP, 
-    AUTH_LOG_OUT, 
-    AUTH_LOG_IN, 
+import {
+    AUTH_SIGN_UP,
+    AUTH_LOG_OUT,
+    AUTH_LOG_IN,
     AUTH_ERROR,
-    GET_SUBMIT_DATA } from './types';
+    GET_SUBMIT_DATA,
+    GET_ACCOUNT_DATA,
+    AUTH_LINK_FACEBOOK,
+    AUTH_LINK_GOOGLE,
+    AUTH_UNLINK_FACEBOOK,
+    AUTH_UNLINK_GOOGLE
+} from './types';
 
 //actionCreators
 
@@ -46,11 +52,10 @@ export const linkFacebook = data => {
             access_token: data
         });
 
-        console.log('res in action creator', res)
-        /*dispatch({
-            type: AUTH_SIGN_UP,
-            payload: res.data.token
-        });*/
+        dispatch({
+            type: AUTH_LINK_FACEBOOK,
+            payload: res.data
+        });
     };
 }
 
@@ -60,21 +65,40 @@ export const linkGoogle = data => {
             access_token: data
         });
 
-        console.log('res in action creator', res)
-        /*dispatch({
-            type: AUTH_SIGN_UP,
-            payload: res.data.token
-        });*/
+        dispatch({
+            type: AUTH_LINK_GOOGLE,
+            payload: res.data
+        });
+    };
+}
+
+export const unlinkFacebook = data => {
+    return async dispatch => {
+        const res = await axios.post('http://localhost:4000/users/oauth/unlink/facebook');
+
+        dispatch({
+            type: AUTH_UNLINK_FACEBOOK,
+            payload: res.data
+        });
+    };
+}
+
+export const unlinkGoogle = data => {
+    return async dispatch => {
+        const res = await axios.post('http://localhost:4000/users/oauth/unlink/google');
+
+        dispatch({
+            type: AUTH_UNLINK_GOOGLE,
+            payload: res.data
+        });
     };
 }
 
 export const signUp = data => {
     return async dispatch => {
         try {
-            console.log('action creator sign up called')
             const res = await axios.post('http://localhost:4000/users/signup', data);
 
-            console.log('action creator dispatched an action')
             dispatch({
                 type: AUTH_SIGN_UP,
                 payload: res.data
@@ -94,10 +118,8 @@ export const signUp = data => {
 export const logIn = data => {
     return async dispatch => {
         try {
-            console.log('action creator log in called')
             const res = await axios.post('http://localhost:4000/users/login', data);
 
-            console.log('action creator dispatched an action')
             dispatch({
                 type: AUTH_LOG_IN,
                 payload: res.data
@@ -114,16 +136,31 @@ export const logIn = data => {
     };
 }
 
-export const getSecret = () => {
+export const getSubmitSecret = () => {
     return async dispatch => {
         try {
-            console.log('trying to getSecret')
-            const res = await axios.get('http://localhost:4000/users/secret');
-            console.log('res', res)
+            console.log('trying to getSubmitSecret')
+            const res = await axios.get('http://localhost:4000/users/submit');
 
             dispatch({
                 type: GET_SUBMIT_DATA,
-                payload: res.data.secret
+                payload: res.data.submitSecret
+            })
+        } catch (error) {
+            console.error('error', error)
+        }
+    }
+}
+
+export const getAccountSecret = () => {
+    return async dispatch => {
+        try {
+            console.log('trying to getAccountSecret')
+            const res = await axios.get('http://localhost:4000/users/account');
+
+            dispatch({
+                type: GET_ACCOUNT_DATA,
+                payload: res.data
             })
         } catch (error) {
             console.error('error', error)

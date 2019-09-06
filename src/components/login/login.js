@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GoogleLogin from 'react-google-login';
 
 import * as actions from '../../actions';
@@ -107,15 +107,16 @@ class Login extends Component {
 
                             <FacebookLogin
                                 appId="220900356921608"
-                                textButton="Log in with Facebook"
                                 fields="name,email,picture"
                                 callback={this.responseFacebook}
-                                cssClass="btn btn-outline-primary"
+                                render={renderProps => (
+                                    <button className="btn btn-outline-primary">Log in with Facebook</button>
+                                )}
                             />
                             <GoogleLogin
                                 clientId="678945436199-ktbs3ii6fn79q37hn1hfqbpn0qg0cfd0.apps.googleusercontent.com"
                                 render={renderProps => (
-                                    <button className="btn btn-outline-danger" onClick={renderProps.onClick} disabled={renderProps.disabled}>Log in with Google</button>
+                                    <button className="btn btn-outline-danger">Log in with Google</button>
                                 )}
                                 onSuccess={this.responseGoogle}
                                 onFailure={this.responseGoogle}

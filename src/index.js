@@ -10,7 +10,7 @@ import axios from 'axios';
 
 import App from './App';
 import NavBar from './components/navbar/navbar';
-import About from './components/about/about';
+import Account from './components/account/account';
 import Submit from './components/submit/submit';
 import Login from './components/login/login';
 import Signup from './components/signup/signup';
@@ -34,8 +34,8 @@ ReactDOM.render(
                 <NavBar />
                 <Switch>
                     <Route path="/" component={App} exact />
-                    <Route path="/about" component={About} />
                     <Route path="/submit" component={authGuard(Submit)} />
+                    <Route path="/account" component={authGuard(Account)} />
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />
                     <Route component={Error} />
