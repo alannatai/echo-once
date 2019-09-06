@@ -33,7 +33,7 @@ class Account extends Component {
                 <div>
                     <h3>{this.props.secret}</h3>
                 </div>
-                <h3 className="alert alert-info">Link your social media accounts</h3>
+                <h3 id="account-labels" className="alert alert-info">Link your social media accounts</h3>
                 <FacebookLogin
                     appId="220900356921608"
                     fields="name,email,picture"
@@ -60,7 +60,7 @@ class Account extends Component {
                     onSuccess={this.linkGoogle}
                     onFailure={this.linkGoogle}
                 />
-                <h3 className="alert alert-info">Unlink your social media accounts</h3>
+                <h3 id="account-labels" className="alert alert-info">Unlink your social media accounts</h3>
                 <button
                     className="btn btn-primary"
                     onClick={() => this.unlinkFacebook()}
