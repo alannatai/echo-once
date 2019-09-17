@@ -19,16 +19,10 @@ import reducers from './reducers';
 
 import authGuard from './HOComponents/authguard';
 
-const jwtToken = localStorage.getItem('JWT_TOKEN');
-axios.defaults.headers.common['Authorization'] = jwtToken;
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
-    <Provider store={createStore(reducers, {
-        auth: {
-            token: jwtToken,
-            isAuthenticated: jwtToken ? true : false
-        }
-    }, applyMiddleware(reduxThunk))}>
+    <Provider store={createStore(reducers, {}, applyMiddleware(reduxThunk))}>
         <BrowserRouter>
             <div>
                 <NavBar />

@@ -16,7 +16,8 @@ class Submit extends Component {
     };
 
     async componentDidMount() {
-        this.props.getSubmitSecret()
+        this.props.checkAuth();
+        this.props.getSubmitSecret();
     }
 
     changeHandler = e => {

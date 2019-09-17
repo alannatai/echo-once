@@ -8,7 +8,8 @@ import * as actions from '../../actions';
 
 class Account extends Component {
     async componentDidMount() {
-        this.props.getAccountSecret()
+        this.props.checkAuth();
+        this.props.getAccountSecret();
     }
 
     linkFacebook = async res => {
